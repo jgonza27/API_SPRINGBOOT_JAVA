@@ -46,6 +46,7 @@ public class DepartmentRepository {
     public boolean delete(Long id) {
         return departments.remove(id) != null; // Devuelve true si fue eliminado, false si no fue encontrado
     }
+
     public Optional<Department> edit(Long id, Department newValue) {
         return Optional.ofNullable(departments.computeIfPresent(id, (Long k, Department v) -> {
             v.setName(newValue.getName());
