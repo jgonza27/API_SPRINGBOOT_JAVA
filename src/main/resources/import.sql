@@ -3,4 +3,4 @@ INSERT INTO department (id, email, name, phone) VALUES (101, 'FOL@iescelia.org',
 
 INSERT INTO employee (department_id, dni, username, name, password, is_admin) VALUES (100, '75654321S', 'john', 'John Doe', '{noop}1234', 0);
 INSERT INTO employee (department_id, dni, username, name, password, is_admin) VALUES (101, '75432100X', 'jane', 'Jane Doe', '{noop}4321', 0);
-INSERT INTO employee (department_id, dni, username, name, password, is_admin) VALUES (100, '12345678A', 'admin', 'Administrador', '{noop}admin', 1);
+INSERT INTO employee (department_id, dni, username, name, password, is_admin) VALUES (100, '12345678S', 'admin', 'Administrador', '{noop}admin', 1);
