@@ -3,6 +3,7 @@ package soy.profesor.rest.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import soy.profesor.rest.dto.NewDepartmentDTO;
+import soy.profesor.rest.dto.NewEmployeeDTO;
 import soy.profesor.rest.error.DepartmentNotFoundException;
 import soy.profesor.rest.model.Department;
 import soy.profesor.rest.repository.DepartmentJpaRepository;
@@ -21,7 +22,13 @@ public class DepartmentService {
 
     // Obtener todos los departamentos
     public List<Department> getAll() {
-        return departmentJpaRepository.findAll();
+        var result = departmentJpaRepository.findAll();
+        if (result.isEmpty()) {
+            throw new DepartmentNotFoundException();
+            // throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No hay departamentos
+            // con esos requisitos de búsqueda");
+        }
+        return result;
     }
 
     // Obtener un departamento por ID
@@ -60,4 +67,12 @@ public class DepartmentService {
         departmentJpaRepository.deleteById(id);
         return result;
     }
+
+    public List<NewEmployeeDTO> getEmployeesById(Long id) {
+        var result = departmentJpaRepository.findEmployeesByDepartmentId(id);
+        if (result.isEmpty())
+            throw new DepartmentNotFoundException(id);
+        return result;
+    }
+
 }

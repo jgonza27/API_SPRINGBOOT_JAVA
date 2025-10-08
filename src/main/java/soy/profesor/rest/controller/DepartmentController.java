@@ -4,14 +4,17 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import soy.profesor.rest.dto.NewDepartmentDTO;
+import soy.profesor.rest.dto.NewEmployeeDTO;
 import soy.profesor.rest.model.Department;
 import soy.profesor.rest.service.DepartmentService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/department")
+@RequestMapping("/api/private/department")
 @RequiredArgsConstructor
+@CrossOrigin(originPatterns = "[*]")
+
 public class DepartmentController {
 
     private final DepartmentService departmentService;
@@ -46,4 +49,11 @@ public class DepartmentController {
         departmentService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    // Endpoint GET /api/department/employee/{id}
+    @GetMapping("/employee/{id}")
+    public List<NewEmployeeDTO> showEmployeesOfDepartment(@PathVariable Long id) {
+        return departmentService.getEmployeesById(id);
+    }
+
 }
