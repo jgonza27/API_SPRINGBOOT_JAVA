@@ -1,6 +1,9 @@
 package soy.profesor.rest.dto;
 
-public record NewDepartmentDTO(String Name,
-        String Phone,
-        String Email) {
+import javax.validation.constraints.*;
+
+public record NewDepartmentDTO(
+                @NotBlank @Size(max = 60) String name,
+                @Size(max = 20) String phone,
+                @NotBlank @Email String email) {
 }

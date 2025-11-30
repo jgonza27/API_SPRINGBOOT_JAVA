@@ -13,7 +13,6 @@ import soy.profesor.rest.repository.EmployeeJpaRepository;
 import soy.profesor.rest.repository.DepartmentJpaRepository;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -48,8 +47,8 @@ public class EmployeeService {
         var result = employeeJpaRepository.findByName(dto.name());
         if (result.isPresent())
             throw new EmployeeNotFoundException("Ya existe un empleado con el nombre " + dto.name());
-        Department refDpto = departmentJpaRepository.findById(dto.id_departament())
-                .orElseThrow(() -> new DepartmentNotFoundException(dto.id_departament()));
+        Department refDpto = departmentJpaRepository.findById(dto.id_department())
+                .orElseThrow(() -> new DepartmentNotFoundException(dto.id_department()));
         // var nuevoEmpleado =
         // Employee.builder().dni(dto.dni()).name(dto.name()).login(dto.login()).password(passwordEncoder.encode(dto.password())).department(refDpto).build();
         var nuevoEmpleado = Employee.builder().dni(dto.dni()).name(dto.name()).username(dto.username())
@@ -64,8 +63,8 @@ public class EmployeeService {
             employee.setUsername(dto.username());
             // employee.setLogin(dto.login());
             employee.setPassword(dto.password());
-            Department refDpto = departmentJpaRepository.findById(dto.id_departament())
-                    .orElseThrow(() -> new DepartmentNotFoundException(dto.id_departament()));
+            Department refDpto = departmentJpaRepository.findById(dto.id_department())
+                    .orElseThrow(() -> new DepartmentNotFoundException(dto.id_department()));
             employee.setDepartment(refDpto);
             return NewEmployeeDTO.of(employeeJpaRepository.save(employee));
         }).orElseThrow(() -> new EmployeeNotFoundException());

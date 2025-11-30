@@ -40,9 +40,9 @@ public class DepartmentService {
     // Crear un nuevo departamento
     public Optional<Department> create(NewDepartmentDTO dto) {
         Department d = new Department();
-        d.setName(dto.Name());
-        d.setPhone(dto.Phone());
-        d.setEmail(dto.Email());
+        d.setName(dto.name());
+        d.setPhone(dto.phone());
+        d.setEmail(dto.email());
         return Optional.of(departmentJpaRepository.save(d));
     }
 
@@ -50,9 +50,9 @@ public class DepartmentService {
     public Department edit(Long id, NewDepartmentDTO dto) {
         return departmentJpaRepository.findById(id)
                 .map(dept -> {
-                    dept.setName(dto.Name());
-                    dept.setPhone(dto.Phone());
-                    dept.setEmail(dto.Email());
+                    dept.setName(dto.name());
+                    dept.setPhone(dto.phone());
+                    dept.setEmail(dto.email());
                     return departmentJpaRepository.save(dept);
                 })
                 .orElseThrow(() -> new DepartmentNotFoundException(id));
