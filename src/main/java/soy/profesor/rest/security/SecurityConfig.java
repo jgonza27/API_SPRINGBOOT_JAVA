@@ -35,13 +35,14 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authz -> authz
                         // Endpoints públicos
                         .requestMatchers("/", "/api/login", "/api/register").permitAll()
-                        // Swagger/OpenAPI endpoints
+                        // Swagger/OpenAPI endpoints - TODAS las rutas necesarias
                         .requestMatchers(
                                 "/v3/api-docs/**",
                                 "/swagger-ui/**",
-                                "/swagger-ui.html",
+                                "/swagger-ui. html",
                                 "/swagger-resources/**",
-                                "/webjars/**")
+                                "/webjars/**",
+                                "/api-docs/**")
                         .permitAll()
                         // Endpoints privados
                         .requestMatchers("/api/private/**").authenticated()
