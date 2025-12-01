@@ -18,14 +18,14 @@ public class Cita {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime FechaHora;
+    private LocalDateTime fechaHora; // CORREGIDO: minúsculas
 
-    private String Sintomas;
+    private String sintomas; // CORREGIDO: minúsculas
 
     @ManyToOne
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
 
-    @ManyToMany(mappedBy = "citas") // Relación inversa
+    @ManyToMany(mappedBy = "citas")
     private List<Sanitario> sanitarios;
 }

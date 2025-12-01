@@ -11,32 +11,34 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/private/sanitarios")
 @RequiredArgsConstructor
-@CrossOrigin(originPatterns = "[*]")
+@CrossOrigin(origins = "*") // CORREGIDO
 public class SanitarioController {
 
 	private final SanitarioService sanitarioService;
 
-	// GET /api/private/sanitarios
 	@GetMapping
 	public List<SanitarioDTO> getAllSanitarios() {
 		return sanitarioService.getAll();
 	}
 
-	// GET /api/private/sanitarios/{id}
 	@GetMapping("/{id}")
 	public ResponseEntity<SanitarioDTO> getSanitarioById(@PathVariable Long id) {
 		return ResponseEntity.ok(sanitarioService.getById(id));
 	}
 
-	// POST /api/private/sanitarios
 	@PostMapping
 	public ResponseEntity<SanitarioDTO> createSanitario(@RequestBody SanitarioDTO sanitarioDTO) {
 		return ResponseEntity.ok(sanitarioService.create(sanitarioDTO));
 	}
 
-	// PUT /api/private/sanitarios/{id}
 	@PutMapping("/{id}")
 	public ResponseEntity<SanitarioDTO> updateSanitario(@PathVariable Long id, @RequestBody SanitarioDTO sanitarioDTO) {
 		return ResponseEntity.ok(sanitarioService.update(id, sanitarioDTO));
+	}
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> deleteSanitario(@PathVariable Long id) {
+		sanitarioService.delete(id);
+		return ResponseEntity.noContent().build();
 	}
 }
