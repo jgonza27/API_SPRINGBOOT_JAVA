@@ -21,10 +21,6 @@ public class Sanitario {
 
     private String especialidad;
 
-    @ManyToMany
-    @JoinTable(name = "sanitario_cita", // Nombre de la tabla intermedia
-            joinColumns = @JoinColumn(name = "sanitario_id"), // Columna que referencia a Sanitario
-            inverseJoinColumns = @JoinColumn(name = "cita_id") // Columna que referencia a Cita
-    )
+    @ManyToMany(mappedBy = "sanitarios")
     private List<Cita> citas;
 }

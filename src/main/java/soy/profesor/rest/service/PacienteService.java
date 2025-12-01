@@ -2,6 +2,7 @@ package soy.profesor.rest.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import soy.profesor.rest.dto.PacienteDTO;
 import soy.profesor.rest.error.PacienteNotFoundException;
 import soy.profesor.rest.model.Paciente;
@@ -49,6 +50,7 @@ public class PacienteService {
     }
 
     // Eliminar un paciente por ID
+    @Transactional
     public void delete(Long id) {
         Paciente paciente = pacienteJpaRepository.findById(id)
                 .orElseThrow(() -> new PacienteNotFoundException("Paciente no encontrado con ID: " + id));
