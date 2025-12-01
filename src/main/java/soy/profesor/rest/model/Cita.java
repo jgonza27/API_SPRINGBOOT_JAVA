@@ -36,6 +36,8 @@ public class Cita {
 
     @PreRemove
     private void removeSanitariosFromCita() {
-        this.sanitarios.clear();
+        if (this.sanitarios != null) {
+            this.sanitarios.clear();
+        }
     }
 }
