@@ -26,6 +26,16 @@ public class Cita {
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
 
-    @ManyToMany(mappedBy = "citas")
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+        name = "sanitario_cita",
+        joinColumns = @JoinColumn(name = "cita_id"),
+        inverseJoinColumns = @JoinColumn(name = "sanitario_id")
+    )
     private List<Sanitario> sanitarios;
+
+    @PreRemove
+    private void removeSanitariosFromCita() {
+        this.sanitarios.clear();
+    }
 }
