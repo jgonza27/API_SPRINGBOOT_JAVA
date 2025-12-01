@@ -1,7 +1,7 @@
 -- Insertar usuarios de ejemplo (password: "password123" encriptado con BCrypt)
 -- Para generar nuevas contraseñas usa: https://bcrypt-generator.com/
-INSERT INTO users (id, username, password, role, enabled) VALUES (1, 'admin', '{bcrypt}$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'ROLE_ADMIN', true);
-INSERT INTO users (id, username, password, role, enabled) VALUES (2, 'user', '{bcrypt}$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'ROLE_USER', true);
+INSERT INTO users (id, username, password, role, enabled) VALUES (1, 'admin', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'ROLE_ADMIN', true);
+INSERT INTO users (id, username, password, role, enabled) VALUES (2, 'user', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'ROLE_USER', true);
 
 -- Insertar pacientes de ejemplo
 INSERT INTO pacientes (id, nombre, antecedentes) VALUES (1, 'Juan Pérez', 'Hipertensión arterial');
