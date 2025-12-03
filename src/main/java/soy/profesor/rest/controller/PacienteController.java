@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import soy.profesor.rest.dto.PacienteDTO;
 import soy.profesor.rest.service.PacienteService;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class PacienteController {
 
     @PostMapping
     @Operation(summary = "Crear un nuevo paciente")
-    public ResponseEntity<PacienteDTO> createPaciente(@RequestBody PacienteDTO pacienteDTO) {
+    public ResponseEntity<PacienteDTO> createPaciente(@Valid @RequestBody PacienteDTO pacienteDTO) {
         return ResponseEntity.ok(pacienteService.create(pacienteDTO));
     }
 

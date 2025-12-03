@@ -5,6 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import soy.profesor.rest.dto.CitaDTO;
 import soy.profesor.rest.service.CitaService;
+import jakarta.validation.Valid; 
+
 
 import java.util.List;
 
@@ -27,7 +29,7 @@ public class CitaController {
     }
 
     @PostMapping
-    public ResponseEntity<CitaDTO> createCita(@RequestBody CitaDTO citaDTO) {
+    public ResponseEntity<CitaDTO> createCita(@Valid @RequestBody CitaDTO citaDTO) {
         return ResponseEntity.ok(citaService.create(citaDTO));
     }
 
