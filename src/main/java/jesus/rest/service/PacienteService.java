@@ -44,7 +44,7 @@ public class PacienteService {
     public PacienteDTO update(Long id, PacienteDTO pacienteDTO) {
         Paciente existingPaciente = pacienteJpaRepository.findById(id)
                 .orElseThrow(() -> new PacienteNotFoundException("Paciente no encontrado con ID: " + id));
-        existingPaciente.setNombre(pacienteDTO.nombre());
+        existingPaciente.setNombreCompleto(pacienteDTO.nombre());
         existingPaciente.setAntecedentes(pacienteDTO.antecedentes());
         Paciente updatedPaciente = pacienteJpaRepository.save(existingPaciente);
         return convertToDTO(updatedPaciente);
@@ -62,7 +62,7 @@ public class PacienteService {
     private PacienteDTO convertToDTO(Paciente paciente) {
         return new PacienteDTO(
                 paciente.getId(),
-                paciente.getNombre(),
+                paciente.getNombreCompleto(),
                 paciente.getAntecedentes());
     }
 
@@ -70,7 +70,7 @@ public class PacienteService {
     private Paciente convertToEntity(PacienteDTO pacienteDTO) {
         Paciente paciente = new Paciente();
         paciente.setId(pacienteDTO.id());
-        paciente.setNombre(pacienteDTO.nombre());
+        paciente.setNombreCompleto(pacienteDTO.nombre());
         paciente.setAntecedentes(pacienteDTO.antecedentes());
         return paciente;
     }
