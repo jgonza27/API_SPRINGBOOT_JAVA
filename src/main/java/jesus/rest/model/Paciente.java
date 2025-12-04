@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "pacientes") 
+@Table(name = "pacientes")
 public class Paciente {
 
     // Atributos
@@ -22,7 +22,7 @@ public class Paciente {
     private Long id;
 
     @NotNull
-    private String nombre;
+    private String nombreCompleto;
 
     private String antecedentes;
 
